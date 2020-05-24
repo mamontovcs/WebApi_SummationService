@@ -8,55 +8,49 @@ namespace DataAccess.Repositories
     /// The Repository mediates between the domain and 
     /// data mapping layers, acting like an in-memory collection of domain objects
     /// </summary>
-    public interface ISessionsRepository
+    public interface ISummationSessionsRepository
     {
         /// <summary>
-        /// Adds <see cref="ISession"/> item to the corresponding <see cref="DatabaseContext"/>
+        /// Adds <see cref="SummationSession"/> item to the corresponding <see cref="DatabaseContext"/>
         /// </summary>
-        /// <param name="session"><see cref="ISession"/>Session to add</param>
-        void Create(ISession session);
+        /// <param name="session"><see cref="SummationSession"/>Session to add</param>
+        void Create(SummationSession session);
 
         /// <summary>
-        /// Finds <see cref="ISession"/> item in the corresponding
+        /// Finds <see cref="ISummationSession"/> item in the corresponding
         /// <see cref="DatabaseContext"/> by its id
         /// </summary>
         /// <param name="id">Id of object</param>
-        /// <returns><see cref="ISession"/>Found object</returns>
-        ISession FindById(int id);
+        /// <returns><see cref="SummationSession"/>Found object</returns>
+        SummationSession FindById(int id);
 
         /// <summary>
         /// Gets all objects from the corresponding <see cref="DatabaseContext"/>
         /// </summary>
-        /// <returns>All <see cref="ISession"/> Objects 
+        /// <returns>All <see cref="SummationSession"/> Objects 
         /// from corresponding <see cref="DatabaseContext"/></returns>
-        IEnumerable<ISession> Get();
+        IEnumerable<SummationSession> Get();
 
         /// <summary>
         /// Gets all objects by predicate from the corresponding <see cref="DbContext"/>
         /// </summary>
-        /// <returns>All founded <see cref="ISession"/> objects 
+        /// <returns>All founded <see cref="SummationSession"/> objects 
         /// from corresponding <see cref="DatabaseContext"/></returns>
-        IEnumerable<ISession> Get(Func<ISession, bool> predicate);
+        IEnumerable<SummationSession> Get(Func<SummationSession, bool> predicate);
 
         /// <summary>
         /// Gets first corresponding object by 
         /// predicate from the corresponding <see cref="DatabaseContext"/>
         /// </summary>
-        /// <returns>Founded <see cref="ISession"/> object 
+        /// <returns>Founded <see cref="SummationSession"/> object 
         /// from corresponding <see cref="DatabaseContext"/></returns>
-        ISession GetOne(Func<ISession, bool> predicate);
+        SummationSession GetOne(Func<SummationSession, bool> predicate);
 
         /// <summary>
-        /// Removes <see cref="ISession"/> 
+        /// Removes <see cref="SummationSession"/> 
         /// item from the corresponding <see cref="DatabaseContext"/>
         /// </summary>
-        /// <param name="session"><see cref="ISession"/> item to remove</param>
-        void Remove(ISession session);
-
-        /// <summary>
-        /// Updates <see cref="ISession"/> item in the corresponding <see cref="DatabaseContext"/>
-        /// </summary>
-        /// <param name="session"><see cref="ISession"/> item to update</param>
-        void Update(ISession session);
+        /// <param name="session"><see cref="SummationSession"/> item to remove</param>
+        void Remove(SummationSession session);
     }
 }

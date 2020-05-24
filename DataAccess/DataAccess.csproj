@@ -56,11 +56,10 @@
   <ItemGroup>
     <Compile Include="DataAccessModule.cs" />
     <Compile Include="DatabaseContext.cs" />
-    <Compile Include="Models\ISession.cs" />
-    <Compile Include="Models\Session.cs" />
+    <Compile Include="Models\SummationSession.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repositories\ISessionsRepository.cs" />
-    <Compile Include="Repositories\SessionsRepository.cs" />
+    <Compile Include="Repositories\ISummationSessionsRepository.cs" />
+    <Compile Include="Repositories\SummationSessionsRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

@@ -9,9 +9,9 @@ namespace DataAccess.Repositories
     /// <summary>
     /// The Repository mediates between the domain and 
     /// data mapping layers, acting like an in-memory collection of domain objects
-    /// Implements <see cref="ISessionsRepository"/> interface
+    /// Implements <see cref="ISummationSessionsRepository"/> interface
     /// </summary>
-    internal class SessionsRepository : ISessionsRepository
+    internal class SummationSessionsRepository : ISummationSessionsRepository
     {
         /// <summary>
         /// Represents a combination of the Unit Of Work and Repository
@@ -21,38 +21,39 @@ namespace DataAccess.Repositories
         private readonly DatabaseContext _databaseContext;
 
         /// <summary>
-        /// Represents the collection of all <see cref="ISession"/> 
+        /// Represents the collection of all <see cref="SummationSession"/> 
         /// entities in the context
         /// </summary>
-        private readonly DbSet<ISession> _sessions;
+        private readonly DbSet<SummationSession> _sessions;
 
         /// <summary>
-        /// Creates instance of <see cref="SessionsRepository"/>
+        /// Creates instance of <see cref="SummationSessionsRepository"/>
         /// </summary>
         /// <param name="databaseContext">Database context</param>
-        public SessionsRepository(DatabaseContext databaseContext)
+        public SummationSessionsRepository(DatabaseContext databaseContext)
         {
             _databaseContext = databaseContext;
 
-            _sessions = _databaseContext.Set<ISession>();
+            _sessions = _databaseContext.Set<SummationSession>();
         }
 
         /// <summary>
-        /// Adds <see cref="ISession"/> item to the corresponding <see cref="DatabaseContext"/>
+        /// Adds <see cref="SummationSession"/> item to the corresponding <see cref="DatabaseContext"/>
         /// </summary>
-        /// <param name="session"><see cref="ISession"/>Session to add</param>
-        public void Create(ISession session)
+        /// <param name="session"><see cref="SummationSession"/>Session to add</param>
+        public void Create(SummationSession session)
         {
             _sessions.Add(session);
+            SaveChanges();
         }
 
         /// <summary>
-        /// Finds <see cref="ISession"/> item in the corresponding
+        /// Finds <see cref="SummationSession"/> item in the corresponding
         /// <see cref="DatabaseContext"/> by its id
         /// </summary>
         /// <param name="id">Id of object</param>
-        /// <returns><see cref="ISession"/>Found object</returns>
-        public ISession FindById(int id)
+        /// <returns><see cref="SummationSession"/>Found object</returns>
+        public SummationSession FindById(int id)
         {
             return _sessions.Find(id);
         }
@@ -60,9 +61,9 @@ namespace DataAccess.Repositories
         /// <summary>
         /// Gets all objects from the corresponding <see cref="DatabaseContext"/>
         /// </summary>
-        /// <returns>All <see cref="ISession"/> Objects 
+        /// <returns>All <see cref="SummationSession"/> Objects 
         /// from corresponding <see cref="DatabaseContext"/></returns>
-        public IEnumerable<ISession> Get()
+        public IEnumerable<SummationSession> Get()
         {
             return _sessions.AsNoTracking().ToList();
         }
@@ -70,9 +71,9 @@ namespace DataAccess.Repositories
         /// <summary>
         /// Gets all objects by predicate from the corresponding <see cref="DbContext"/>
         /// </summary>
-        /// <returns>All founded <see cref="ISession"/> objects 
+        /// <returns>All founded <see cref="SummationSession"/> objects 
         /// from corresponding <see cref="DatabaseContext"/></returns>
-        public IEnumerable<ISession> Get(Func<ISession, bool> predicate)
+        public IEnumerable<SummationSession> Get(Func<SummationSession, bool> predicate)
         {
             return _sessions.AsNoTracking().Where(predicate).ToList();
         }
@@ -81,23 +82,24 @@ namespace DataAccess.Repositories
         /// Gets first corresponding object by 
         /// predicate from the corresponding <see cref="DatabaseContext"/>
         /// </summary>
-        /// <returns>Founded <see cref="ISession"/> object 
+        /// <returns>Founded <see cref="SummationSession"/> object 
         /// from corresponding <see cref="DatabaseContext"/></returns>
-        public ISession GetOne(Func<ISession, bool> predicate)
+        public SummationSession GetOne(Func<SummationSession, bool> predicate)
         {
             return _sessions.AsNoTracking().Where(predicate).FirstOrDefault();
         }
 
         /// <summary>
-        /// Removes <see cref="ISession"/> 
+        /// Removes <see cref="SummationSession"/> 
         /// item from the corresponding <see cref="DatabaseContext"/>
         /// </summary>
-        /// <param name="session"><see cref="ISession"/> item to remove</param>
-        public void Remove(ISession session)
+        /// <param name="session"><see cref="SummationSession"/> item to remove</param>
+        public void Remove(SummationSession session)
         {
             try
             {
                 _sessions.Remove(session);
+                SaveChanges();
             }
             catch (ArgumentNullException)
             {
@@ -106,12 +108,11 @@ namespace DataAccess.Repositories
         }
 
         /// <summary>
-        /// Updates <see cref="ISession"/> item in the corresponding <see cref="DatabaseContext"/>
+        /// Saves changes to database;
         /// </summary>
-        /// <param name="session"><see cref="ISession"/> item to update</param>
-        public void Update(ISession session)
+        private void SaveChanges()
         {
-            _databaseContext.Entry(session).State = EntityState.Modified;
+            _databaseContext.SaveChanges();
         }
     }
 }

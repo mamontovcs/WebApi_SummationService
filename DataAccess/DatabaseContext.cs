@@ -20,9 +20,9 @@ namespace DataAccess
         }
 
         /// <summary>
-        /// Represents the collection of all <see cref="ISession"/> 
+        /// Represents the collection of all <see cref="ISummationSession"/> 
         /// entities in the context
         /// </summary>
-        public DbSet<ISession> Sessions { get; set; }
+        public DbSet<SummationSession> Sessions { get; set; }
     }
 }

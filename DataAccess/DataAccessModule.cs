@@ -15,7 +15,7 @@ namespace DataAccess
         {
             var context = new DatabaseContext();
 
-            Bind<ISessionsRepository>().ToConstructor(x => new SessionsRepository(context));
+            Bind<ISummationSessionsRepository>().ToConstructor(x => new SummationSessionsRepository(context));
         }
     }
 }

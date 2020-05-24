@@ -1,11 +1,18 @@
-﻿namespace DataAccess.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace DataAccess.Models
 {
     /// <summary>
     /// Model of summation session
-    /// Implements <see cref="ISession>
     /// </summary>
-    public class Session : ISession
+    public class SummationSession
     {
+        /// <summary>
+        /// Session identifier
+        /// </summary>
+        [Key]
+        public int Id { get; set; }
+
         /// <summary>
         /// First digit
         /// </summary>
