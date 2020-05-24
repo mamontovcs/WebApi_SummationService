@@ -1,8 +1,6 @@
 ﻿using BusinessLogic;
 using System;
 using System.Collections.Generic;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Cors;
 using System.Web.Http.Description;
@@ -36,7 +34,7 @@ namespace WebApi_Angular.Controllers
         {
             return _summationService.GetSessionById(id);
         }
-        
+
         [Route("api/Summation/postSession")]
         [HttpPost]
         public IHttpActionResult PostSession([FromBody]SummationSessionDTO sessionDTO)
@@ -67,7 +65,7 @@ namespace WebApi_Angular.Controllers
         }
 
         // DELETE: api/Summation/5
-        [Route("Summation/{id}")]
+        [HttpDelete]
         public IHttpActionResult Delete(int id)
         {
             _summationService.RemoveSessionByID(id);
